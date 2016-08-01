@@ -1,0 +1,133 @@
+<html>
+
+<head>
+    <title>ARK EATS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="static/js/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="static/js/jquery.color-2.1.2.min.js"></script>
+</head>
+
+<style>
+    html,body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: Avenir,"Microsoft YaHei",微软雅黑;
+    }
+
+    div {
+        display: block;
+    }
+
+    a {
+        text-decoration: none;
+        outline: none;
+    }
+
+
+    li {
+        list-style: none;
+    }
+
+    * {
+        font-family: Avenir,"Microsoft YaHei",微软雅黑;
+    }
+
+    p {
+        margin: 0;
+        padding: 0;
+        font-family: Avenir,"Microsoft YaHei",微软雅黑;
+    }
+
+    ::-webkit-input-placeholder {
+        color: rgba(0,0,0,0.3);
+    }
+
+
+    .clear {
+        clear: both;
+    }
+
+    .popup-item {
+        display: none;
+        opacity: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.8);
+        z-index: 100;
+    }
+
+
+    nav {
+        position: relative;
+        width: 100%;
+        height: 88px;
+        margin: 0 auto;
+        background-color: rgb(255,211,91);
+        box-shadow: 0px 5px 5px rgba(0,0,0,0.01);
+
+    }
+
+    .impact {
+        position: relative;
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        background-color: white;
+    }
+
+    .impact p {
+        font-size: 14px;
+        width: 100%;
+        text-align: center;
+        color: rgb(200,200,200);
+    }
+
+    footer {
+        position: relative;
+        width: 100%;
+        height: 88px;
+        margin: 0 auto;
+    }
+
+    footer p {
+        width: 100%;
+        font-size: 12px;
+        line-height: 88px;
+        text-align: center;
+        color: rgb(200,200,200);
+    }
+
+    footer p .icp {
+        cursor: pointer;
+    }
+
+</style>
+
+<body>
+
+<nav></nav>
+
+<div class="impact"><div style="width: 100%;height: 1px;margin: 0 auto;"></div><p>ARK EATS EVERYTHING : COMING SOON!!!</p></div>
+
+<footer>
+<p>© 2016 ARK EATS</p>
+</footer>
+
+</body>
+
+<script>
+    $(function(){
+        var windowHeight = $(window).height();
+        $('.impact').height(windowHeight-176);
+        var impactPtop = (windowHeight-176)*0.4;
+        $('.impact p').css({marginTop:impactPtop});
+    });
+</script>
+
+</html>
