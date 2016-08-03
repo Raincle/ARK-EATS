@@ -706,6 +706,16 @@
     <div class="start-btn"><p>START</p></div>
 </div>
 
+<div class="select-arkers">
+    <div class="arkers">
+        <div class="arker"><p>小红</p></div>
+    </div>
+    <div class="selected">
+        <div class="selected-arker"><p>小红</p></div>
+    </div>
+    <div class="next-btn"></div>
+</div>
+
 <footer>
 <p>© 2016 ARK EATS</p>
 </footer>
@@ -716,6 +726,11 @@
     $(function(){
         var windowWidth = $(window).width();
         var windowHeight = $(window).height();
+
+        var arkersList = ["小红", "Roja", "简叔", "麦子", "Jenny", "梦瑾", "彩文", "滕老师", "Tanya", "小熊", "Summer", "三国"];
+
+        var eatsList = ["开车", "食屎啦", "日料"];
+
         $('.impact').height(windowHeight-176);
         var impactPtop = (windowHeight-176)*0.3;
         $('.impact .ark-eats').css({marginTop:impactPtop});
