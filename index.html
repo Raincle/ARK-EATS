@@ -159,11 +159,12 @@
     .select-arkers .arkers {
         position: relative;
         width: 100%;
-        height: 240px;
+        height: auto;
         margin: 0 auto;
+        padding: 64px 0;
     }
 
-    .select-arkers .arkers .arker {
+    .select-arkers .arkers .unselected-arker {
         position: relative;
         width: 80px;
         height: 80px;
@@ -174,7 +175,7 @@
         cursor: pointer;
     }
 
-    .select-arkers .arkers .arker p {
+    .select-arkers .arkers .unselected-arker p {
         position: relative;
         font-size: 20px;
         line-height: 80px;
@@ -192,7 +193,7 @@
         border: 4px dashed rgb(245,43,110);
     }
 
-    .selected .selected-arker {
+    .arkers .selected-arker {
         position: relative;
         width: 88px;
         height: 88px;
@@ -203,7 +204,7 @@
         cursor: pointer;
     }
 
-    .selected .selected-arker p {
+    .arkers .selected-arker p {
         position: relative;
         font-size: 20px;
         line-height: 88px;
@@ -846,9 +847,6 @@
     <div class="arkers">
         <div class="arker"><p>小红</p></div>
     </div>
-    <div class="selected">
-        <div class="selected-arker"><p>小红</p></div>
-    </div>
     <div class="next-btn"><p>OK</p></div>
 </div>
 
@@ -877,7 +875,7 @@
         var arkersList = ["小红", "Roja", "简叔", "麦子", "Jenny", "梦瑾", "彩文", "滕老师", "Tanya", "小熊", "Summer", "三国"];
         var arkersInner = "";
         for (var i = 0; i < arkersList.length; i++) {
-            var arker = "<div class='arker'><p>" +
+            var arker = "<div class='arker unselected-arker'><p>" +
                     arkersList[i] +
                     "</p></div>";
             arkersInner += arker;
@@ -918,6 +916,7 @@
 
 
         $('.impact').height(windowHeight-176);
+        $('.select-arkers').height(windowHeight-176);
         $('.results').height(windowHeight-176);
         $('.result-wrapper').css({top:(windowHeight-176-80)/2});
         var impactPtop = (windowHeight-176)*0.3;
@@ -945,6 +944,19 @@
         }
 
 
+        //Aker;
+        $('.arker').click(function() {
+            if ($(this).hasClass("unselected-arker")) {
+                $(this).removeClass("unselected-arker");
+                $(this).addClass("selected-arker");
+            } else {
+                $(this).removeClass("selected-arker");
+                $(this).addClass("unselected-arker");
+            }
+
+        });
+
+
         //Btn;
         $('.start-btn').click(function() {
             $('.impact').animate({opacity:0},'normal',function() {
@@ -961,6 +973,9 @@
                 });
             })
         });
+
+
+
 
 
     });
