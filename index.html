@@ -13,7 +13,7 @@
     html,body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    overflow: hidden;
     font-family: Avenir,"Microsoft YaHei",微软雅黑;
     }
 
@@ -146,6 +146,140 @@
     footer p .icp {
         cursor: pointer;
     }
+
+    .select-arkers {
+        display: none;
+        opacity: 0;
+        position: relative;
+        width: 720px;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .select-arkers .arkers {
+        position: relative;
+        width: 100%;
+        height: 240px;
+        margin: 0 auto;
+    }
+
+    .select-arkers .arkers .arker {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        margin: 16px 16px;
+        border-radius: 80px;
+        border: 4px solid rgb(245,43,110);
+        float: left;
+        cursor: pointer;
+    }
+
+    .select-arkers .arkers .arker p {
+        position: relative;
+        font-size: 20px;
+        line-height: 80px;
+        text-align: center;
+        color: rgb(245,43,110);
+    }
+
+    .selected {
+        position: relative;
+        width: 100%;
+        height: 240px;
+        margin: 0 auto;
+        margin-top: 32px;
+        border-radius: 32px;
+        border: 4px dashed rgb(245,43,110);
+    }
+
+    .selected .selected-arker {
+        position: relative;
+        width: 88px;
+        height: 88px;
+        margin: 16px 16px;
+        border-radius: 88px;
+        background-color:  rgb(245,43,110);
+        float: left;
+        cursor: pointer;
+    }
+
+    .selected .selected-arker p {
+        position: relative;
+        font-size: 20px;
+        line-height: 88px;
+        text-align: center;
+        color: white;
+    }
+
+    .next-btn {
+        position: relative;
+        width: 160px;
+        height: 40px;
+        margin: 0 auto;
+        margin-top: 32px;
+        background-color: rgb(245,43,110);
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .next-btn p {
+        font-size: 16px;
+        width: 100%;
+        line-height: 40px;
+        text-align: center;
+        color: white;
+    }
+
+    .results {
+        display: none;
+        opacity: 0;
+        position: relative;
+        width: 720px;
+        height: 320px;
+        margin: 0 auto;
+    }
+
+    .results .result-wrapper {
+        position: absolute;
+        width: 100%;
+        height: 80px;
+        left: 0;
+        top: 120px;
+    }
+
+    .results .result-wrapper .result-text {
+        position: absolute;
+        font-size: 64px;
+        line-height: 80px;
+        text-align: left;
+        width: auto;
+        top: 0;
+        left: 0;
+        color: black;
+    }
+
+    .eats-list-wrapper {
+        position: absolute;
+        width: 360px;
+        height: auto;
+        right: 0;
+        top: 0;
+    }
+
+    .eats-list-wrapper p {
+        position: relative;
+        font-size: 64px;
+        line-height: 80px;
+        width: auto;
+        text-align: right;
+        margin: 0 auto;
+        color: lightgrey;
+    }
+
+    .eats-list-wrapper .destination {
+        color: rgb(245,43,110);
+    }
+
 
 </style>
 
@@ -706,6 +840,8 @@
     <div class="start-btn"><p>START</p></div>
 </div>
 
+
+
 <div class="select-arkers">
     <div class="arkers">
         <div class="arker"><p>小红</p></div>
@@ -713,7 +849,18 @@
     <div class="selected">
         <div class="selected-arker"><p>小红</p></div>
     </div>
-    <div class="next-btn"></div>
+    <div class="next-btn"><p>OK</p></div>
+</div>
+
+
+
+<div class="results">
+    <div class="result-wrapper">
+        <p class="result-text">我们的将要去</p>
+        <div class="eats-list-wrapper">
+            <p>???</p>
+        </div>
+    </div>
 </div>
 
 <footer>
@@ -728,10 +875,51 @@
         var windowHeight = $(window).height();
 
         var arkersList = ["小红", "Roja", "简叔", "麦子", "Jenny", "梦瑾", "彩文", "滕老师", "Tanya", "小熊", "Summer", "三国"];
+        var arkersInner = "";
+        for (var i = 0; i < arkersList.length; i++) {
+            var arker = "<div class='arker'><p>" +
+                    arkersList[i] +
+                    "</p></div>";
+            arkersInner += arker;
+        }
+        arkersInner += "<div class='clear'></div>";
+        $('.arkers').html(arkersInner);
 
-        var eatsList = ["开车", "食屎啦", "日料"];
+
+
+        var eatsList = [
+            "付小姐", "食屎啦", "哈尔滨水饺", "老妈米线",
+            "和府捞面", "宏日料", "卡卡度", "吃霸王餐",
+                "莲池", "全家便利店", "清真",
+                "付小姐", "食屎啦", "哈尔滨水饺", "老妈米线",
+            "和府捞面", "宏日料", "卡卡度", "吃霸王餐",
+                "莲池", "全家便利店", "清真",
+                "付小姐", "食屎啦", "哈尔滨水饺", "老妈米线",
+            "和府捞面", "宏日料", "卡卡度", "吃霸王餐",
+                "莲池", "全家便利店", "清真",
+        ];
+        var randomNumber = Math.floor(Math.random()*eatsList.length);
+        var eatsListInner = "";
+        for (var i = 0; i < eatsList.length; i++) {
+            var className = "";
+            if (i == randomNumber) {
+                className = "destination";
+            };
+            var eat = "<p class='" +
+                    className +
+                    "'>" +
+                    eatsList[i] +
+                    "</p>";
+            eatsListInner += eat;
+        }
+        eatsListInner += "<div class='clear'></div>";
+        $('.eats-list-wrapper').html(eatsListInner);
+
+
 
         $('.impact').height(windowHeight-176);
+        $('.results').height(windowHeight-176);
+        $('.result-wrapper').css({top:(windowHeight-176-80)/2});
         var impactPtop = (windowHeight-176)*0.3;
         $('.impact .ark-eats').css({marginTop:impactPtop});
 
@@ -755,6 +943,25 @@
             var bg = bgSVG.clone().css({top:positionData[i].top, left:positionData[i].left});
             $('.background').append(bg);
         }
+
+
+        //Btn;
+        $('.start-btn').click(function() {
+            $('.impact').animate({opacity:0},'normal',function() {
+                $(this).css({display:'none'});
+                $('.select-arkers').css({display:'block'}).animate({opacity:1},'normal');
+            })
+        });
+
+        $('.next-btn').click(function() {
+            $('.select-arkers').animate({opacity:0},'normal',function() {
+                $(this).css({display:'none'});
+                $('.results').css({display:'block'}).animate({opacity:1},'normal', function() {
+                    $('.eats-list-wrapper').animate({top: -80*randomNumber},100*randomNumber);
+                });
+            })
+        });
+
 
     });
 </script>
