@@ -212,7 +212,8 @@
         color: white;
     }
 
-    .next-btn {
+
+    .together-btn {
         position: relative;
         width: 160px;
         height: 40px;
@@ -223,12 +224,30 @@
         cursor: pointer;
     }
 
-    .next-btn p {
+    .together-btn p {
         font-size: 16px;
         width: 100%;
         line-height: 40px;
         text-align: center;
         color: white;
+    }
+
+     .dispatch-btn {
+        position: relative;
+        width: 160px;
+        height: 40px;
+        margin: 0 auto;
+        margin-top: 32px;
+        background-color: darkgray;
+        border-radius: 8px;
+    }
+
+    .dispatch-btn p {
+        font-size: 16px;
+        width: 100%;
+        line-height: 40px;
+        text-align: center;
+        color: lightgrey;
     }
 
     .results {
@@ -847,7 +866,9 @@
     <div class="arkers">
         <div class="arker"><p>小红</p></div>
     </div>
-    <div class="next-btn"><p>OK</p></div>
+    <div class="together-btn"><p>我们一起吃</p></div>
+    <div class="dispatch-btn"><p>我们分组吃</p></div>
+
 </div>
 
 
@@ -965,7 +986,7 @@
             })
         });
 
-        $('.next-btn').click(function() {
+        $('.together-btn').click(function() {
             $('.select-arkers').animate({opacity:0},'normal',function() {
                 $(this).css({display:'none'});
                 $('.results').css({display:'block'}).animate({opacity:1},'normal', function() {
