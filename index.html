@@ -300,6 +300,28 @@
         color: rgb(245,43,110);
     }
 
+    .retry-btn {
+        display: none;
+        opacity: 0;
+        position: absolute;
+        width: 80px;
+        height: 60px;
+        text-align: left;
+        top: 10px;
+        right: -160px;
+        border-radius: 8px;
+        border: 4px solid rgb(245,43,110);
+        cursor: pointer;
+    }
+
+    .retry-btn p {
+        font-size: 20px;
+        width: 100%;
+        line-height: 60px;
+        text-align: center;
+        color: rgb(245,43,110);
+    }
+
 
 </style>
 
@@ -879,7 +901,9 @@
         <div class="eats-list-wrapper">
             <p>???</p>
         </div>
+        <div class="retry-btn"><p>换一个</p></div>
     </div>
+
 </div>
 
 <footer>
@@ -990,9 +1014,29 @@
             $('.select-arkers').animate({opacity:0},'normal',function() {
                 $(this).css({display:'none'});
                 $('.results').css({display:'block'}).animate({opacity:1},'normal', function() {
-                    $('.eats-list-wrapper').animate({top: -80*randomNumber},100*randomNumber);
+                    $('.eats-list-wrapper').animate({top: -80*randomNumber},100*randomNumber, function(){
+                        $('.retry-btn').css({display:'block'});
+                        $('.retry-btn').animate({opacity:1},'normal');
+                    });
                 });
             })
+        });
+
+        $('.retry-btn').click(function() {
+            $(this).animate({opacity:0},'normal',function() {
+                $('.retry-btn').css({display:'none'});
+            });
+            randomNumber = Math.floor(Math.random()*eatsList.length);
+            $('.eats-list-wrapper .destination').removeClass("destination");
+            $('.eats-list-wrapper p').eq(randomNumber).addClass("destination");
+//            for (var i = 0; i < $('.eats-list-wrapper p').length; i++) {
+//
+//            }
+            $('.eats-list-wrapper').animate({top: -80*randomNumber},100*randomNumber, function(){
+                $('.retry-btn').css({display:'block'});
+                $('.retry-btn').animate({opacity:1},'normal');
+            });
+            $('.retry-btn').css({display:'block'}).animate({opacity:1},'normal');
         });
 
 
